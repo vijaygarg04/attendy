@@ -176,7 +176,9 @@ ArrayList<Faculty> facultyArrayList;
 
             }
             MyTask myTask=new MyTask();
-            myTask.execute();
+            String filetypearray[]=new String[1];
+            filetypearray[0]=filetype;
+            myTask.execute(filetypearray);
         }catch (Exception e){
             e.printStackTrace();
         }
