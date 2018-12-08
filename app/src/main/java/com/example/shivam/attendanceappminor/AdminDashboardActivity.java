@@ -98,10 +98,17 @@ ArrayList<Faculty> facultyArrayList;
     private void studentfileupload() {
         String file=filename.getText().toString();
         databaseReference=firebaseDatabase.getReference().child("student");
-        readExcelFile(AdminDashboardActivity.this,file);
+        readExcelFile(AdminDashboardActivity.this,file,11,"student");
     }
 
-    private void readExcelFile(Context context, String file) {
+    private void facultyfileupload() {
+        String file=filename.getText().toString();
+        databaseReference=firebaseDatabase.getReference().child("faculty");
+        readExcelFile(AdminDashboardActivity.this,file,6,"faculty");
+
+    }
+
+    private void readExcelFile(Context context, String file,int size, String filetype) {
         if (!isExternalStorageAvailable() || isExternalStorageReadOnly())
         {
             Log.w("FileUtils", "Storage not available or read only");
@@ -120,7 +127,7 @@ ArrayList<Faculty> facultyArrayList;
             while(rowIter.hasNext()){
                 HSSFRow myRow = (HSSFRow) rowIter.next();
                 Iterator<Cell> cellIter = myRow.cellIterator();
-                String values[]=new String[11];
+                String values[]=new String[size];
                 int i=0;
                 while(cellIter.hasNext()){
                     HSSFCell myCell = (HSSFCell) cellIter.next();
@@ -133,9 +140,14 @@ ArrayList<Faculty> facultyArrayList;
                 id =  id.replace(".","");
                 id  = id.replace("E10","");
 
+                if(filetype.equals("student")) {
+                    Student student = new Student(values[0], id, values[2], values[3], values[4], values[5], values[6], values[7], values[8], values[9], values[10]);
+                    studentArrayList.add(student);
+                }else{
+                    Faculty faculty=new Faculty(values[0],id,values[2],values[3],values[4],values[5]);
+                    facultyArrayList.add(faculty);
 
-                Student student=new Student(values[0],id,values[2],values[3],values[4],values[5],values[6],values[7],values[8],values[9],values[10]);
-                studentArrayList.add(student);
+                }
 
 
             }
@@ -147,7 +159,7 @@ ArrayList<Faculty> facultyArrayList;
 
         return;
     }
-    class MyTask extends AsyncTask<Void,Void,Void> {
+    class MyTask extends AsyncTask<String,Void,Void> {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -163,17 +175,25 @@ ArrayList<Faculty> facultyArrayList;
         }
 
         @Override
-        protected Void doInBackground(Void... voids) {
-            for( int i=0;i<studentArrayList.size();i++){
-                inputdata(studentArrayList.get(i));
+        protected Void doInBackground(String filetype[]) {
+            if(filetype[0].equals("student")) {
+                for (int i = 0; i < studentArrayList.size(); i++) {
+                    inputstudentdata(studentArrayList.get(i));
 
+                }
+            }else{
+
+                for (int i = 0; i < facultyArrayList.size(); i++) {
+                    inputfacultydata(facultyArrayList.get(i));
+
+                }
             }
 
             return null;
 
 
         }
-        private void inputdata(final Student student){
+        private void inputstudentdata(final Student student){
 
 
             databaseReference.child(student.getStudendid()).setValue(student).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -190,6 +210,23 @@ ArrayList<Faculty> facultyArrayList;
 
         }
     }
+
+    private void inputfacultydata(Faculty faculty) {
+
+        databaseReference.child(faculty.getFacultyid()).setValue(faculty).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.e("DATAENTRY","SUCCESS");
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.e("DATAENTRY","FAILED");
+            }
+        });
+
+    }
+
     private static boolean isExternalStorageReadOnly() {
         String extStorageState = Environment.getExternalStorageState();
         if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(extStorageState)) {
@@ -206,9 +243,5 @@ ArrayList<Faculty> facultyArrayList;
         return false;
     }
 
-    private void facultyfileupload() {
-        String file=filename.getText().toString();
 
-
-    }
 }
