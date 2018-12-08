@@ -35,6 +35,7 @@ import java.util.Date;
 import java.util.Iterator;
 
 public class AdminDashboardActivity extends AppCompatActivity {
+
 EditText filename;
 Button studentfilebutton,facultyfilebutton;
 FirebaseDatabase firebaseDatabase;
@@ -98,7 +99,7 @@ ArrayList<Faculty> facultyArrayList;
     private void studentfileupload() {
         String file=filename.getText().toString();
         databaseReference=firebaseDatabase.getReference().child("student");
-        readExcelFile(AdminDashboardActivity.this,file,11,"student");
+        readExcelFile(AdminDashboardActivity.this,file,10,"student");
     }
 
     private void facultyfileupload() {
@@ -141,7 +142,8 @@ ArrayList<Faculty> facultyArrayList;
                 id  = id.replace("E10","");
 
                 if(filetype.equals("student")) {
-                    Student student = new Student(values[0], id, values[2], values[3], values[4], values[5], values[6], values[7], values[8], values[9], values[10]);
+                    String batchid=values[4]+"_"+values[5]+"_"+values[9]+"_"+values[6];
+                    Student student = new Student(values[0], id, values[2], values[3],batchid , values[4], values[5], values[6], values[7], values[8], values[9]);
                     studentArrayList.add(student);
                 }else{
                     Faculty faculty=new Faculty(values[0],id,values[2],values[3],values[4],values[5]);
