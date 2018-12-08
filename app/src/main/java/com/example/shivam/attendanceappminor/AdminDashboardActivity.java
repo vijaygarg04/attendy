@@ -137,15 +137,37 @@ ArrayList<Faculty> facultyArrayList;
                     Log.w("FileUtils", "Cell Value: " +  myCell.toString());
                     Toast.makeText(context, "cell Value: " + myCell.toString(), Toast.LENGTH_SHORT).show();
                 }
-                String id  = values[1];
-                id =  id.replace(".","");
-                id  = id.replace("E10","");
+
+
 
                 if(filetype.equals("student")) {
+                    String id  = values[1];
+                    id =  id.replace(".","");
+                    id  = id.replace("E10","");
+                    values[2]=values[2].replace(".0","");
+                    if(values[2].length()<8){
+                        values[2]="0"+values[2];
+                    }
+                    values[3]=values[3].replace(".0","");
+                    values[4]=values[4].replace(".0","");
+                    values[5]=values[5].replace(".0","");
+                    values[7]=values[7].replace(".","");
+                    values[7]=values[7].replace("E9","");
                     String batchid=values[4]+"_"+values[5]+"_"+values[9]+"_"+values[6];
                     Student student = new Student(values[0], id, values[2], values[3],batchid , values[4], values[5], values[6], values[7], values[8], values[9]);
                     studentArrayList.add(student);
                 }else{
+                    String id  = values[1];
+
+                    id =  id.replace(".","");
+                    id  = id.replace("E10","");
+                    values[2]=values[2].replace(".0","");
+                    if(values[2].length()<8){
+                        values[2]="0"+values[2];
+                    }
+                    values[3]=values[3].replace(".0","");
+                    values[5]=values[5].replace(".","");
+                    values[5]=values[5].replace("E9","");
                     Faculty faculty=new Faculty(values[0],id,values[2],values[3],values[4],values[5]);
                     facultyArrayList.add(faculty);
 
