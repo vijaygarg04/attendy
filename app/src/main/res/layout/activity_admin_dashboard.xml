@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context="com.example.shivam.attendanceappminor.AdminDashboardActivity">
+<EditText
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Enter File Name"
+    android:id="@+id/filename"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:layout_height="wrap_content"
+            android:text="Student upload"
+            android:layout_marginRight="10dp"
+            android:id="@+id/studentfileupload"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_height="wrap_content"
+            android:text="Student upload"
+            android:id="@+id/facultyfileupload"/>
+    </LinearLayout>
+
+
+</LinearLayout>

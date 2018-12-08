@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.shivam.attendanceappminor.LoginChooser">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/admin_btn"
+        android:text="ADMINISTRATor"
+        android:layout_weight="1"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+    android:text="Faculty"
+        android:id="@+id/faculty_btn"
+        android:layout_weight="1"/>
+
+    <Button
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+        android:id="@+id/student_btn"
+        android:text="student"
+    android:layout_weight="1"/>
+
+</LinearLayout>

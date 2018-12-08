@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+android:orientation="vertical"
+    android:layout_marginTop="150dp"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    tools:context="com.example.shivam.attendanceappminor.LoginActivity">
+<EditText
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    android:id="@+id/user_name_edit"
+    android:hint="Enter User Name"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:id="@+id/password_edit"
+        android:hint="Enter password"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="SUBMIT"
+        android:id="@+id/submit_btn"/>
+</LinearLayout>
